@@ -20,7 +20,8 @@ jobs:
       uses: actions/setup-java@v1.4.3
       with:
         java-version: 1.8
+    # ShiftLeft NG SAST ignores test directory by default
     - name: Analyze with NG SAST
-      run: ${GITHUB_WORKSPACE}/sl analyze --force --app dvna-linux --tag branch=${GITHUB_REF} --wait --js --cpg .
+      run: ${GITHUB_WORKSPACE}/sl analyze --force --app dvna-linux --tag branch=${GITHUB_REF} --wait --js --cpg . -- --with-tests --include-configs
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
