@@ -22,6 +22,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Analyze with NG SAST
-      run: .\sl analyze --force --app dvna-win --tag branch=${GITHUB_REF} --wait --verbose --js --cpg . -- --with-tests --include-configs
+      run: |
+        npm install
+        .\sl analyze --force --app dvna-win --tag branch=${GITHUB_REF} --wait --verbose --js --cpg . -- --with-tests --include-configs
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
